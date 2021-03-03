@@ -12,35 +12,42 @@ def answer(number):
     print("!", number)
 
 
-def ask(*args):
-    for number in args:
-        print("?", number)
+def find_numbers(left, right):
+    sizeof_nums = 10
+    length = right - left
+    numbers = list()
+    if length > sizeof_nums:
+        for i in range(sizeof_nums):
+            numbers.append(left + i * length // sizeof_nums)
+    else:
+        for i in range(length):
+            numbers.append(left + i)
+    numbers.append(right)
+    return numbers
+
+
+def get_new_range(numbers):
+    # print("Numbers" + str(numbers))
+    for i in range(1, len(numbers) - 1):
+        print("?", numbers[i])
     print("+")
-    answer_from_user = list()
-    for _ in args:
-        answer_from_user.append(bool(int(safe_input())))
-    return answer_from_user
 
+    answers = [bool(int(safe_input())) for i in range(len(numbers) - 2)]
+    for i in range(len(answers)):
+        if answers[i] is True:
+            return (numbers[i], numbers[i + 1])
 
-def get_ranges(left, right):
-    return left + (right - left) // 4, left + (right - left) // 2, left + 3 * (right - left) // 4
+    return (numbers[-2], numbers[-1])
 
 
 def find(left, right):
     sys.stdout.flush()
-    if (left + 1 == right):
-        answer(left)
+    range = get_new_range(find_numbers(left, right))
+    # print("Range:" + str(range))
+    if range[0] + 1 == range[1] or range[0] == range[1]:
+        answer(range[0])
         return
-    ranges = get_ranges(left, right)
-    (first, second, third) = ask(ranges[0], ranges[1], ranges[2])
-    if first and second and third:
-        find(left, ranges[0])
-    elif second and third and not first:
-        find(ranges[0], ranges[1])
-    elif third and not second and not first:
-        find(ranges[1], ranges[2])
-    else:
-        find(ranges[2], right)
+    find(*range)
 
 
-find(1, 100000)
+find(1, 100001)
