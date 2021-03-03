@@ -1,6 +1,6 @@
 def counter_to_words():
     counter = dict()
-    for word in list(map(str.lower, input().split())):
+    for word in [i.lower() for i in input().split()]:
         if word not in counter:
             counter[word] = 0
         counter[word] += 1

@@ -27,7 +27,6 @@ def find_numbers(left, right):
 
 
 def get_new_range(numbers):
-    # print("Numbers" + str(numbers))
     for i in range(1, len(numbers) - 1):
         print("?", numbers[i])
     print("+")
@@ -43,7 +42,6 @@ def get_new_range(numbers):
 def find(left, right):
     sys.stdout.flush()
     range = get_new_range(find_numbers(left, right))
-    # print("Range:" + str(range))
     if range[0] + 1 == range[1] or range[0] == range[1]:
         answer(range[0])
         return
