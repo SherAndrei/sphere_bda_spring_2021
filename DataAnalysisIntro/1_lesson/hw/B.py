@@ -1,9 +1,6 @@
-def sum_of_digits(x):
-    result = 0
-    for digit in list(x):
-        result += int(digit)
-    return (result, int(x))
+def sum_of_digits(string_num):
+    return (sum([int(char_digit) for char_digit in list(string_num)]), int(string_num))
 
 
 start_size = int(input())
-print(' '.join(sorted(input().split(), key=sum_of_digits)))
+print(*sorted(input().split(), key=sum_of_digits))

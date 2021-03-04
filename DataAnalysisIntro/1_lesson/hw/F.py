@@ -1,19 +1,17 @@
-def counter_to_words():
+def counter_to_words(sentence):
     counter = dict()
-    for word in [i.lower() for i in input().split()]:
-        if word not in counter:
-            counter[word] = 0
-        counter[word] += 1
+    for word in sentence.split():
+        counter[word.title()] = counter.get(word.title(), 0) + 1
     return counter
 
 
 def compare_counters(first, second):
     for word in second:
-        if word not in first:
-            return False
-        if first[word] < second[word]:
+        if word not in first or first[word] < second[word]:
             return False
     return True
 
 
-print("YES" if compare_counters(counter_to_words(), counter_to_words()) else "NO")
+print("YES" if compare_counters(counter_to_words(input()),
+                                counter_to_words(input()))
+      else "NO")

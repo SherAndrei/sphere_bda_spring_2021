@@ -1,7 +1,5 @@
 def calculate(N, K):
-    if (K >= 1):
-        return int(N*K) + calculate(N, K - 1)
-    return 0
+    return 0 if K < 1 else int(N * K) + calculate(N, K - 1)
 
 
 (N, K) = input().split()
