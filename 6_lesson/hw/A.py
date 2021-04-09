@@ -1,5 +1,3 @@
-# %%
-
 def solution1(arg):
     return [ch * 4 for ch in arg]
 
