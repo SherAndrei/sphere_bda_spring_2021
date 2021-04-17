@@ -228,3 +228,49 @@ signal.setitimer(signal.ITIMER_REAL, seconds)
 
 ## Решение
     F.py
+
+# Задача G. Неправильный словарь
+
+В модуле collections есть класс defaultdict, который позволяет создавать словарь со значением по-умолчанию.
+
+Пусть:
+
+    smartdict – (обычный) словарь (dict), который хранит в себе некоторый defaultdict;
+    key – некоторый ключ в словаре smartdict;
+    val – значение в словаре smartdict по ключу key: val = smartdict[key].
+
+Значение по-умолчанию для val определим, как smartdict_nan(key).
+
+Имеется следующая реализация:
+
+```py
+from collections import defaultdict
+
+def smartdict_nan(key):
+    return 10 * key
+
+N = 10
+
+smartdict = {}
+for key in range(N):
+    val = defaultdict(lambda: smartdict_nan(key))
+    smartdict[key] = val
+```
+
+При такой реализации словарь smartdict работает не так, как было задумано.
+
+```py
+>>> smartdict[5]['key_unknown']
+90 # right answer is 50
+
+>>> smartdict[7]['key_unknown']
+90 # right answer is 70
+
+>>> smartdict[2]['key_unknown']
+90 # right answer is 20
+```
+
+Объясните, почему код работает неверно (в комментарии к решению), и исправьте ошибку. Разворачивать цикл в последовательные вызовы запрещено. Чем подробнее будет ваше объяснение, тем выше вероятность, что оно будет правильно понято и задание будет засчитано.
+
+## Решение
+    G.py
