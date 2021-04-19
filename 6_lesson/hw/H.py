@@ -1,4 +1,6 @@
 from collections import deque
+import string
+
 
 class Node:
     def __init__(self, character="", word=None, is_key=False, parent=None):
@@ -11,6 +13,7 @@ class Node:
 
     def add_child(self, node):
         self.children[node.character] = node
+
 
 class Trie:
     def __init__(self):
